@@ -1,8 +1,10 @@
-# Edit Task
+# App functions
+
+## Edit Task
 
 To edit task doubleClick on the task.
 
-# Toggle Reminder
+## Toggle Reminder
 
 To toggle reminder click on the task heading.
 
