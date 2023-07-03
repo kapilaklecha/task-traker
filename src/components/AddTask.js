@@ -12,6 +12,10 @@ const AddTask = ({ onAdd }) => {
       alert("Please Enter Task");
       return;
     }
+    if (!day) {
+      alert("Please Enter Day and Time");
+      return;
+    }
     onAdd({ text, day, reminder });
     setText("");
     setDay("");
