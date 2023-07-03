@@ -1,3 +1,13 @@
+# App functions
+
+## Edit Task
+
+To edit task doubleClick on the task.
+
+## Toggle Reminder
+
+To toggle reminder click on the task heading.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
