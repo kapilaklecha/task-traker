@@ -50,6 +50,15 @@ function App() {
     );
   };
 
+  // Edit Task
+
+  const editTask = (id, newText) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, text: newText } : task
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <div className="container">
       <Header
@@ -58,7 +67,12 @@ function App() {
       />
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
+        <Tasks
+          tasks={tasks}
+          onDelete={deleteTask}
+          onToggle={toggleReminder}
+          onEdit={editTask}
+        />
       ) : (
         "No Tasks To Show"
       )}
