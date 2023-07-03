@@ -22,6 +22,7 @@ const Task = ({ task, onDelete, onToggle, onEdit }) => {
     <div
       className={`task ${task.reminder ? "reminder" : ""}`}
       onDoubleClick={handleDoubleClick}
+      onClick={() => onToggle(task.id)}
     >
       {editing ? (
         <input
@@ -33,11 +34,14 @@ const Task = ({ task, onDelete, onToggle, onEdit }) => {
         />
       ) : (
         <>
-          <h3 onClick={() => onToggle(task.id)}>
+          <h3>
             {task.text}{" "}
             <FaTimes
               style={{ color: "red", cursor: "pointer" }}
-              onClick={() => onDelete(task.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(task.id);
+              }}
             />
           </h3>
           <p>{task.day}</p>
