@@ -20,7 +20,6 @@ const AddTask = ({ onAdd }) => {
     setText("");
     setDay("");
     setReminder(false);
-    console.log(onAdd({ text, day, reminder }));
   };
 
   return (
