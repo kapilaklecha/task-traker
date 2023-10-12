@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const Task = ({ task, onDelete, onToggle, onEdit }) => {
   const [editing, setEditing] = useState(false);
-  const [text, setText] = useState(task.text);
+  const textRef = useRef(null);
 
   const handleDoubleClick = () => {
     setEditing(true);
   };
 
-  const handleInputChange = (e) => {
-    setText(e.target.value);
-  };
-
   const handleSaveClick = () => {
-    onEdit(task.id, text);
+    onEdit(task.id, textRef.current.textContent);
     setEditing(false);
   };
 
@@ -25,13 +21,20 @@ const Task = ({ task, onDelete, onToggle, onEdit }) => {
       onClick={() => onToggle(task.id)}
     >
       {editing ? (
-        <input
-          type="text"
-          value={text}
-          onChange={handleInputChange}
+        <div
+          ref={textRef}
+          contentEditable
+          onInput={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSaveClick();
+            }
+          }}
           onBlur={handleSaveClick}
-          autoFocus
-        />
+          style={{ outline: "none", fontWeight: 'bold' }}
+        >
+          {task.text}
+        </div>
       ) : (
         <>
           <h3>
